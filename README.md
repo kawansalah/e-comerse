@@ -14,11 +14,13 @@ A full-stack e-commerce application with SQLite database backend.
 ## Tech Stack
 
 **Backend:**
+
 - Node.js
 - Express.js
 - SQLite3
 
 **Frontend:**
+
 - HTML5
 - CSS3
 - Vanilla JavaScript
@@ -28,23 +30,27 @@ A full-stack e-commerce application with SQLite database backend.
 ### Local Development
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/kawansalah/e-comerse.git
    cd e-comerse
    ```
 
 2. **Install dependencies**
+
    ```bash
    cd backend
    npm install
    ```
 
 3. **Initialize the database**
+
    ```bash
    npm run init-db
    ```
 
 4. **Start the server**
+
    ```bash
    npm start
    ```
@@ -58,6 +64,7 @@ The API will be available at `http://localhost:3000`
 ## API Endpoints
 
 ### Products
+
 - `GET /api/products` - Get all products
 - `GET /api/products/:id` - Get single product
 - `POST /api/products` - Create new product
@@ -65,6 +72,7 @@ The API will be available at `http://localhost:3000`
 - `DELETE /api/products/:id` - Delete product
 
 ### Orders
+
 - `GET /api/orders` - Get all orders
 - `GET /api/orders/:id` - Get single order
 - `POST /api/orders` - Create new order
