@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Order Confirmation - BAZZAR</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body class="bg-gray-50 flex flex-col min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-md">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="text-2xl font-bold text-blue-600">
+                        <a href="index.html">BAZZAR</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-12 flex-1">
+            <!-- Success Message -->
+            <div class="max-w-3xl mx-auto text-center mb-8">
+                <div
+                    class="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-6">
+                    <i class="fas fa-check-circle text-5xl text-green-500"></i>
+                </div>
+                <h1 class="text-4xl font-bold text-gray-900 mb-2">Order Placed
+                    Successfully!</h1>
+                <p class="text-xl text-gray-600 mb-6">Thank you for your
+                    purchase</p>
+                <div
+                    class="bg-blue-50 border-2 border-blue-200 rounded-lg p-4 inline-block">
+                    <p class="text-sm text-gray-600 mb-1">Order Number</p>
+                    <p id="orderNumber"
+                        class="text-3xl font-bold text-blue-600">#123456</p>
+                </div>
+                <p class="mt-4 text-gray-600">A confirmation email has been sent
+                    to <span id="customerEmail" class="font-medium">your
+                        email</span></p>
+            </div>
+
+            <!-- Order Details Card -->
+            <div
+                class="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8 mb-8">
+                <h2 class="text-2xl font-bold mb-6">Order Details</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <!-- Customer Information -->
+                    <div>
+                        <h3
+                            class="font-semibold text-lg mb-3 text-gray-700">Customer
+                            Information</h3>
+                        <div class="space-y-2 text-gray-600">
+                            <p><strong>Name:</strong> <span
+                                    id="custName">-</span></p>
+                            <p><strong>Email:</strong> <span
+                                    id="custEmail">-</span></p>
+                            <p><strong>Phone:</strong> <span
+                                    id="custPhone">-</span></p>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Address -->
+                    <div>
+                        <h3
+                            class="font-semibold text-lg mb-3 text-gray-700">Shipping
+                            Address</h3>
+                        <div id="shippingAddress" class="text-gray-600">
+                            <!-- Address will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Items -->
+                <div class="border-t pt-6">
+                    <h3 class="font-semibold text-lg mb-4 text-gray-700">Order
+                        Items</h3>
+                    <div id="orderItemsList" class="space-y-3">
+                        <!-- Order items will be inserted here -->
+                    </div>
+                </div>
+
+                <!-- Order Total -->
+                <div class="border-t mt-6 pt-6">
+                    <div class="flex justify-end">
+                        <div class="w-full md:w-1/2 space-y-2">
+                            <div class="flex justify-between text-gray-600">
+                                <span>Subtotal:</span>
+                                <span id="orderSubtotal">$0.00</span>
+                            </div>
+                            <div class="flex justify-between text-gray-600">
+                                <span>Shipping:</span>
+                                <span id="orderShipping">$0.00</span>
+                            </div>
+                            <div class="flex justify-between text-gray-600">
+                                <span>Tax:</span>
+                                <span id="orderTax">$0.00</span>
+                            </div>
+                            <div
+                                class="flex justify-between text-xl font-bold border-t pt-2">
+                                <span>Total:</span>
+                                <span id="orderTotal"
+                                    class="text-blue-600">$0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div
+                class="max-w-4xl mx-auto flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="index.html"
+                    class="inline-flex items-center justify-center px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition shadow-md">
+                    <i class="fas fa-shopping-bag mr-2"></i>
+                    Continue Shopping
+                </a>
+                <button onclick="window.print()"
+                    class="inline-flex items-center justify-center px-8 py-3 bg-white text-gray-700 border-2 border-gray-300 rounded-lg font-semibold hover:bg-gray-50 transition">
+                    <i class="fas fa-download mr-2"></i>
+                    Download Invoice
+                </button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white mt-16">
+            <div class="container mx-auto px-4 py-8">
+                <div class="text-center text-gray-400">
+                    <p>&copy; 2025 BAZZAR. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="js/utils.js"></script>
+        <script>
+        // Load order details from sessionStorage
+        window.addEventListener('DOMContentLoaded', () => {
+            const orderId = sessionStorage.getItem('orderId');
+            const orderData = JSON.parse(sessionStorage.getItem('orderData') || '{}');
+
+            if (orderId) {
+                document.getElementById('orderNumber').textContent = `#${orderId}`;
+            }
+
+            if (orderData.customer_name) {
+                document.getElementById('custName').textContent = orderData.customer_name;
+                document.getElementById('custEmail').textContent = orderData.email;
+                document.getElementById('custPhone').textContent = orderData.phone;
+                document.getElementById('customerEmail').textContent = orderData.email;
+
+                // Display shipping address
+                const address = `
+                    ${orderData.address}<br>
+                    ${orderData.city || ''}, ${orderData.state || ''} ${orderData.postalCode || ''}<br>
+                    ${orderData.country || ''}
+                `;
+                document.getElementById('shippingAddress').innerHTML = address;
+
+                // Display order items
+                const items = JSON.parse(localStorage.getItem('cart') || '[]');
+                const itemsHtml = items.map(item => `
+                    <div class="flex justify-between items-center py-2 border-b">
+                        <div>
+                            <p class="font-medium">${item.name}</p>
+                            <p class="text-sm text-gray-500">Quantity: ${item.quantity}</p>
+                        </div>
+                        <p class="font-semibold">$${(item.price * item.quantity).toFixed(2)}</p>
+                    </div>
+                `).join('');
+                document.getElementById('orderItemsList').innerHTML = itemsHtml;
+
+                // Display totals
+                document.getElementById('orderSubtotal').textContent = `$${orderData.subtotal || '0.00'}`;
+                document.getElementById('orderShipping').textContent = `$${orderData.shipping || '0.00'}`;
+                document.getElementById('orderTax').textContent = `$${orderData.tax || '0.00'}`;
+                document.getElementById('orderTotal').textContent = `$${orderData.total || '0.00'}`;
+            }
+        });
+    </script>
+    </body>
+</html>

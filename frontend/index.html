@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BAZZAR - Your Online Shopping Destination</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body class="bg-gray-50 flex flex-col min-h-screen">
+        <!-- Header / Navigation -->
+        <header class="bg-white shadow-md sticky top-0 z-50">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex items-center justify-between">
+                    <!-- Logo -->
+                    <div class="text-2xl font-bold text-blue-600">
+                        <a href="index.html">BAZZAR</a>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div class="hidden md:flex flex-1 max-w-xl mx-8">
+                        <div class="relative w-full">
+                            <input
+                                type="text"
+                                id="searchInput"
+                                placeholder="Search products..."
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <button
+                                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-blue-600">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Cart Icon -->
+                    <div class="relative">
+                        <a href="cart.html"
+                            class="text-gray-700 hover:text-blue-600 transition">
+                            <i class="fas fa-shopping-cart text-2xl"></i>
+                            <span id="cartCounter"
+                                class="hidden absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">0</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobile Search Bar -->
+                <div class="md:hidden mt-4">
+                    <div class="relative w-full">
+                        <input
+                            type="text"
+                            id="searchInputMobile"
+                            placeholder="Search products..."
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button
+                            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Category Filter Section -->
+        <section class="bg-white border-b">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex gap-2 overflow-x-auto scrollbar-hide">
+                    <button
+                        class="category-btn active px-6 py-2 rounded-full bg-blue-600 text-white font-medium whitespace-nowrap hover:bg-blue-700 transition"
+                        data-category>
+                        All Products
+                    </button>
+                    <button
+                        class="category-btn px-6 py-2 rounded-full bg-gray-100 text-gray-700 font-medium whitespace-nowrap hover:bg-gray-200 transition"
+                        data-category="Electronics">
+                        Electronics
+                    </button>
+                    <button
+                        class="category-btn px-6 py-2 rounded-full bg-gray-100 text-gray-700 font-medium whitespace-nowrap hover:bg-gray-200 transition"
+                        data-category="Clothing">
+                        Clothing
+                    </button>
+                    <button
+                        class="category-btn px-6 py-2 rounded-full bg-gray-100 text-gray-700 font-medium whitespace-nowrap hover:bg-gray-200 transition"
+                        data-category="Books">
+                        Books
+                    </button>
+                    <button
+                        class="category-btn px-6 py-2 rounded-full bg-gray-100 text-gray-700 font-medium whitespace-nowrap hover:bg-gray-200 transition"
+                        data-category="Home & Kitchen">
+                        Home & Kitchen
+                    </button>
+                    <button
+                        class="category-btn px-6 py-2 rounded-full bg-gray-100 text-gray-700 font-medium whitespace-nowrap hover:bg-gray-200 transition"
+                        data-category="Sports">
+                        Sports
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8 flex-1">
+            <!-- Loading State -->
+            <div id="loadingSpinner" class="hidden text-center py-20">
+                <div
+                    class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                <p class="mt-4 text-gray-600">Loading products...</p>
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="hidden text-center py-20">
+                <i class="fas fa-box-open text-6xl text-gray-300 mb-4"></i>
+                <h3 class="text-2xl font-semibold text-gray-700 mb-2">No
+                    Products Found</h3>
+                <p class="text-gray-500">Try adjusting your search or filter to
+                    find what you're looking for.</p>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="productsGrid"
+                class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Product cards will be inserted here by JavaScript -->
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white mt-16">
+            <div class="container mx-auto px-4 py-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">BAZZAR</h3>
+                        <p class="text-gray-400">Your trusted online shopping
+                            destination for quality products.</p>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">Quick Links</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><a href="index.html"
+                                    class="hover:text-white transition">Home</a></li>
+                            <li><a href="cart.html"
+                                    class="hover:text-white transition">Cart</a></li>
+                            <li><a href="admin.html"
+                                    class="hover:text-white transition">Admin
+                                    Panel</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-4">Contact Us</h4>
+                        <ul class="space-y-2 text-gray-400">
+                            <li><i
+                                    class="fas fa-envelope mr-2"></i>support@BAZZAR.com</li>
+                            <li><i class="fas fa-phone mr-2"></i>+1 (555)
+                                123-4567</li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                    <p>&copy; 2025 BAZZAR. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <script src="js/utils.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

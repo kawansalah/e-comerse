@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shopping Cart - BAZZAR</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body class="bg-gray-50 flex flex-col min-h-screen">
+        <!-- Header -->
+        <header class="bg-white shadow-md sticky top-0 z-50">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex items-center justify-between">
+                    <div class="text-2xl font-bold text-blue-600">
+                        <a href="index.html">BAZZAR</a>
+                    </div>
+                    <div class="relative">
+                        <a href="cart.html" class="text-gray-700">
+                            <i class="fas fa-shopping-cart text-2xl"></i>
+                            <span id="cartCounter"
+                                class="hidden absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-4 py-8 flex-1">
+            <h1 class="text-3xl font-bold mb-8">Shopping Cart</h1>
+
+            <!-- Empty Cart State -->
+            <div id="emptyCart" class="hidden text-center py-20">
+                <i class="fas fa-shopping-cart text-6xl text-gray-300 mb-4"></i>
+                <h3 class="text-2xl font-semibold text-gray-700 mb-2">Your Cart
+                    is Empty</h3>
+                <p class="text-gray-500 mb-6">Looks like you haven't added
+                    anything to your cart yet.</p>
+                <a href="index.html"
+                    class="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                    Browse Products
+                </a>
+            </div>
+
+            <!-- Cart Content -->
+            <div id="cartContent" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left Column - Cart Items -->
+                <div class="lg:col-span-2 space-y-4">
+                    <div id="cartItemsList">
+                        <!-- Cart items will be inserted here -->
+                    </div>
+
+                    <div class="mt-6">
+                        <a href="index.html"
+                            class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium">
+                            <i class="fas fa-arrow-left mr-2"></i>
+                            Continue Shopping
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Column - Cart Summary -->
+                <div class="lg:sticky lg:top-24 h-fit">
+                    <div class="bg-white rounded-lg shadow-md p-6 space-y-4">
+                        <h2 class="text-xl font-bold mb-4">Cart Summary</h2>
+
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-gray-600">
+                                <span>Subtotal</span>
+                                <span id="subtotal">$0.00</span>
+                            </div>
+                            <div class="flex justify-between text-gray-600">
+                                <span>Shipping</span>
+                                <span id="shipping">$0.00</span>
+                            </div>
+                            <div class="flex justify-between text-gray-600">
+                                <span>Tax (8%)</span>
+                                <span id="tax">$0.00</span>
+                            </div>
+                            <div id="discountRow"
+                                class="hidden flex justify-between text-green-600">
+                                <span>Discount</span>
+                                <span id="discount">-$0.00</span>
+                            </div>
+                        </div>
+
+                        <div class="border-t pt-4">
+                            <div class="flex justify-between text-xl font-bold">
+                                <span>Total</span>
+                                <span id="total"
+                                    class="text-blue-600">$0.00</span>
+                            </div>
+                        </div>
+
+                        <!-- Promo Code -->
+                        <div class="border-t pt-4">
+                            <div id="promoCodeInput" class="space-y-2">
+                                <label
+                                    class="block text-sm font-medium text-gray-700">Promo
+                                    Code</label>
+                                <div class="flex gap-2">
+                                    <input
+                                        type="text"
+                                        id="promoInput"
+                                        placeholder="Enter code"
+                                        class="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <button id="applyPromoBtn"
+                                        class="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-900 transition font-medium">
+                                        Apply
+                                    </button>
+                                </div>
+                                <p id="promoMessage" class="text-sm hidden"></p>
+                            </div>
+                            <div id="promoCodeApplied"
+                                class="hidden flex items-center justify-between bg-green-50 px-3 py-2 rounded-lg">
+                                <span
+                                    class="text-green-700 text-sm font-medium">Code
+                                    applied!</span>
+                                <button id="removePromoBtn"
+                                    class="text-red-600 hover:text-red-700 text-sm">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <button id="checkoutBtn"
+                            class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition shadow-md">
+                            Proceed to Checkout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-800 text-white mt-16">
+            <div class="container mx-auto px-4 py-8">
+                <div class="text-center text-gray-400">
+                    <p>&copy; 2025 BAZZAR. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+
+        <script src="js/utils.js"></script>
+        <script src="js/cart.js"></script>
+    </body>
+</html>

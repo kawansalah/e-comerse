@@ -1,0 +1,23 @@
+{
+  "name": "e-comerse",
+  "version": "1.0.0",
+  "description": "E-Commerce application with SQLite backend",
+  "scripts": {
+    "start": "cd backend && npm install && npm run init-db && npm start",
+    "dev": "cd backend && npm run dev",
+    "install-deps": "cd backend && npm install",
+    "init-db": "cd backend && npm run init-db"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kawansalah/e-comerse.git"
+  },
+  "keywords": [
+    "ecommerce",
+    "sqlite",
+    "express",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC"
+}
