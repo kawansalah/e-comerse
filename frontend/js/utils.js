@@ -180,9 +180,14 @@ function isValidPhone(phone) {
 }
 
 /**
- * API base URL
+ * API base URL - dynamically determined based on environment
+ * In production (Render), uses the current domain
+ * In development, uses localhost:3000
  */
-const API_BASE_URL = "http://localhost:3000/api";
+const API_BASE_URL =
+  window.location.hostname === "localhost"
+    ? "http://localhost:3000/api"
+    : `${window.location.protocol}//${window.location.host}/api`;
 
 /**
  * Makes an API request
